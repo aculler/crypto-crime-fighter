@@ -502,7 +502,6 @@ Andy
             textbox.update(0.5)
 
             if not text_finished and pg.time.get_ticks() >= text_timer + current_timer:
-                print('text timer expired')
                 text_finished = True
 
             for event in pg.event.get():
@@ -705,4 +704,3 @@ Andy
         for item in pg.sprite.spritecollide(self.player, self.collectables, True):
             self.player.heal(item.reward_health)
             self.player.damage += item.reward_damage
-            print(f'player.score={self.player.score}')

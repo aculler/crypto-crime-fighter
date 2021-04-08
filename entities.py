@@ -131,7 +131,6 @@ class Player(Entity):
 
             b_vec = m_vec - p_vec
             b_vec.normalize_ip()
-            print(f'b_vec: {b_vec}')
 
             Bullet(self.game, p_vec.x, p_vec.y, b_vec, Enemy, damage=self.damage)
 
@@ -214,7 +213,6 @@ class Enemy(Entity):
                 point = myvec.lerp(playervec, interval * itr)
                 for wall in walls:
                     if wall.collidepoint(point.x, point.y):
-                        print('line of sight blocked by wall')
                         return False
             return True
         return False
@@ -241,14 +239,12 @@ class Enemy(Entity):
             self.last_action = now
             if self._player_in_range(self.attack_range):
                 self.rand_moving = False
-                print('player in attack range!')
                 b_vec = self._vec_to_player()
                 EnemyBullet(self.game, self.rect.center[0], self.rect.center[1], b_vec)
 
                 self.last_action = now
             elif self._player_in_range(self.sight_range):
                 self.rand_moving = True
-                print('player in sight!')
                 m_vec = self._vec_to_player()
                 self.move_dir = (m_vec.x, m_vec.y)
 
