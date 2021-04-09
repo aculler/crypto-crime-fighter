@@ -631,6 +631,7 @@ Andy
         
         pg.display.flip()
         while True:
+            self.game_clock.tick(self.fps)
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.state = GameState.EXIT
@@ -639,9 +640,6 @@ Andy
                     if event.key == pg.K_ESCAPE:
                         self.state = GameState.PAUSE
                         return
-                    if event.key == pg.K_F4:
-                        for enemy in self.enemies:
-                            enemy.remove()
                 if event.type == PLAYERDEADEVENT:
                     self.state = GameState.GAMEOVER
                     return
